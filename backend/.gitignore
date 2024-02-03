@@ -1,0 +1,30 @@
+# Virtual environment
+venv/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Caches
+.cache/
+
+# Logs
+*.log
+
+# Ignore the generated documentation files
+docs/_build/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# VS Code settings
+.vscode/
+
+# Editor-specific files
+*~
+
+# OS-specific files
+.DS_Store
+Thumbs.db
