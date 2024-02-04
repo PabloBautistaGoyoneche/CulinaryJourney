@@ -4,7 +4,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { FavoritePageComponent } from './pages/favorite-page/favorite-page.component';
 import { FooterMainComponent } from './components/footer-main/footer-main.component';
 import { NavbarMainComponent } from './components/navbar-main/navbar-main.component';
-import { RecipeDialogComponent } from './components/recipe-dialog/recipe-dialog.component';
+import { RecipeModalComponent } from './components/recipe-modal/recipe-modal.component';
 import { RecipeViewComponent } from './components/recipe-view/recipe-view.component';
 import { CulinaryPageRoutingModule } from './culinary-page-routing.module';
 
@@ -16,7 +16,7 @@ import { CulinaryPageRoutingModule } from './culinary-page-routing.module';
     FavoritePageComponent,
     FooterMainComponent,
     NavbarMainComponent,
-    RecipeDialogComponent,
+    RecipeModalComponent,
     RecipeViewComponent
 
 
@@ -26,7 +26,7 @@ import { CulinaryPageRoutingModule } from './culinary-page-routing.module';
     FavoritePageComponent,
     FooterMainComponent,
     NavbarMainComponent,
-    RecipeDialogComponent,
+    RecipeModalComponent,
     RecipeViewComponent
   ],
   imports: [

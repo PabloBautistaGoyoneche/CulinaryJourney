@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
     selector: 'app-recipe-view',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
 })
 
 export class RecipeViewComponent {
+    constructor(private sanitizer: DomSanitizer) {}
+    showModal: boolean = false;
+    @Input() recipe: any;
 
+    getSanitizedSummary(): any {
+        return this.sanitizer.bypassSecurityTrustHtml(this.recipe.summary);
+    }
 }

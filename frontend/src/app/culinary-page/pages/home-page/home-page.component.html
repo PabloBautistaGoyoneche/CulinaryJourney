@@ -79,10 +79,7 @@
           </div>   
         </div>
     </section>
-    <app-recipe-view></app-recipe-view>
-    <app-recipe-view></app-recipe-view>
-    <app-recipe-view></app-recipe-view>
-    <app-recipe-view></app-recipe-view>
-    <app-recipe-view></app-recipe-view>
+    <app-recipe-view *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe-view>
+
   </main>
 <app-main-footer></app-main-footer>
