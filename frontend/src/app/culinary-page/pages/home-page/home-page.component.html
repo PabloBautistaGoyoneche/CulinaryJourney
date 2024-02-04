@@ -1,0 +1,85 @@
+<app-main-navbar></app-main-navbar>
+<main class="profile-page">
+    <section class="relative block" style="height: 500px;">
+      <div
+        class="absolute top-0 w-full h-full bg-center bg-cover"
+        style='background-image: url(./assets/img/ingredients_bg_2.png);'
+      >
+        <span
+          id="blackOverlay"
+          class="w-full h-full absolute opacity-50 bg-black"
+        ></span>
+      </div>
+      <div
+        class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
+        style="height: 70px;"
+      >
+        <!-- <svg
+          class="absolute bottom-0 overflow-hidden"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          version="1.1"
+          viewBox="0 0 2560 100"
+          x="0"
+          y="0"
+        >
+          <polygon
+            class="text-gray-300 fill-current"
+            points="2560 0 2560 100 0 100"
+          ></polygon>
+        </svg> -->
+      </div>
+    </section>
+    <section class="relative py-16 bg-gray-300">
+      <div class="container mx-auto px-4">
+        <div
+          class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64"
+        >
+          <div class="px-6">
+            <div class="mb-12 text-center mt-12">
+                <div class="flex w-full md:justify-center justify-center items-end">
+                    <div class="relative mr-4 lg:w-full xl:w-1/2 w-2/4">
+                        <!-- <label for="hero-field" class="leading-7 text-sm text-gray-600">Placeholder</label> -->
+                        <input type="text" id="hero-field" name="hero-field" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:ring-amber-200 focus:bg-transparent focus:border-amber-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                    <button class="inline-flex text-white bg-amber-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-800 rounded text-lg">Buscar</button>
+                </div>
+              <!-- <h3
+                class="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2"
+              >
+                Jenna Stones
+              </h3>
+              <div
+                class="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase"
+              >
+                <i
+                  class="fas fa-map-marker-alt mr-2 text-lg text-gray-500"
+                ></i>
+                Los Angeles, California
+              </div>
+              <div class="mb-2 text-gray-700 mt-10">
+                <i class="fas fa-briefcase mr-2 text-lg text-gray-500"></i
+                >Solution Manager - Creative Tim Officer
+              </div>
+              <div class="mb-2 text-gray-700">
+                <i class="fas fa-university mr-2 text-lg text-gray-500"></i
+                >University of Computer Science
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- <h3>-------------------------------------Hola-------------------------------------</h3> -->
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 mx-auto">
+          <div class="flex flex-col text-center w-full mb-10">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Recetas</h1>
+            <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them.</p>
+          </div>   
+        </div>
+    </section>
+    <app-recipe-view *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe-view>
+
+  </main>
+<app-main-footer></app-main-footer>

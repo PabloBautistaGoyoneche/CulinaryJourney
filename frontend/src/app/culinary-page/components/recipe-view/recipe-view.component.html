@@ -1,0 +1,24 @@
+<section class="text-gray-600 body-font">
+    <div class="container px-28 py-5 mx-auto">
+      <div class="flex flex-wrap -m-2">
+        <div class="p-2 w-full">
+          <div class="h-full flex items-center border-gray-200 border p-6 rounded-lg">
+            <img alt="team" class="w-60 h-60 bg-gray-100 object-cover object-center flex-shrink-0 rounded-lg mr-4" [src]="recipe.image">
+            <div class="flex-grow">
+              <h2 class="text-gray-900 title-font font-medium sm:text-2xl text-2x1">{{ recipe.title }}</h2>
+              <!-- <p class="text-gray-500">UI Designer</p> -->
+              <p class="mb-4" [innerHTML]="getSanitizedSummary()"> </p>
+            </div>
+            <div class="flex-grow p-5">
+                <button class="text-white bg-amber-500 border-0 py-2 px-8 focus:outline-none hover:bg-amber-800 rounded text-lg" (click)="showModal = true">Ver más...</button>
+                <app-recipe-modal *ngIf="showModal" (click)="showModal = false"></app-recipe-modal>
+            </div>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      
+    </div>
+</section>
