@@ -1,5 +1,6 @@
 from fastapi import Depends, FastAPI, HTTPException
 import uvicorn
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from db.operations import MySQLConnection
 from auth.login import create_access_token, verify_password, get_user, get_current_user
@@ -11,6 +12,15 @@ from db.operations import create_favorite_recipes
 from models.favorite_recipe import FavoriteRecipeCreate, FavoriteRecipe
 
 app = FastAPI()
+
+# Configurar CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:4200"],
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_headers=["*"],
+)
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
