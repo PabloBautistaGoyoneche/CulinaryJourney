@@ -51,7 +51,7 @@
                     for="grid-password"
                     >Correo</label
                   ><input
-                    type="email"
+                    type="email" #email id="email"
                     class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                     placeholder="Correo"
                     style="transition: all 0.15s ease 0s;"
@@ -63,7 +63,7 @@
                     for="grid-password"
                     >Contraseña</label
                   ><input
-                    type="password"
+                    type="password" #password id="password"
                     class="border-0 px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                     placeholder="Contraseña"
                     style="transition: all 0.15s ease 0s;"
@@ -82,9 +82,9 @@
                   >
                 </div>
                 <div class="text-center mt-6">
-                  <button routerLink="/home"
+                  <button
                     class="bg-amber-500 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full"
-                    type="button"
+                    type="button" (click)="login(email.value, password.value)"
                     style="transition: all 0.15s ease 0s;">
                     Iniciar sesión
                   </button>
