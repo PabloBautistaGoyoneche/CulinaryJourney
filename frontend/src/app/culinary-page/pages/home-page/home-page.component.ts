@@ -14,7 +14,7 @@ export class HomePageComponent implements OnInit {
 
     ngOnInit() {
         this.spoonacularService.getRandomRecipes().subscribe((data) => {
-            console.log(data.recipes);
+            // console.log(data.recipes);
             this.recipes = data.recipes;
         });
     }

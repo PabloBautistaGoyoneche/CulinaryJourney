@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/internal/Observable';
 @Injectable({providedIn: 'root'})
 export class SpoonacularService {
 
-    private apiKey = '52cff9c93801417f877a356f9a552a7e';
+    private apiKey = 'c2381a467d4245c2bcb03e81f34acc52';
     private apiUrl = 'https://api.spoonacular.com'; 
 
     constructor(private http: HttpClient) {}
@@ -14,6 +14,10 @@ export class SpoonacularService {
         const url = `${this.apiUrl}/recipes/random?apiKey=${this.apiKey}&number=10`;
         return this.http.get(url);
     };
-    
-    
+
+    getRecipesById(id: number): Observable<any> {
+        const url = `${this.apiUrl}/recipes/${id}/information?apiKey=${this.apiKey}`;
+        return this.http.get(url);
+    };
+
 }
