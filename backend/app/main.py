@@ -13,14 +13,31 @@ from models.favorite_recipe import FavoriteRecipeCreate, FavoriteRecipe
 
 app = FastAPI()
 
-# Configurar CORS
+# Configurar los orígenes permitidos (reemplaza esto con los orígenes permitidos en tu caso)
+origins = [
+    "http://localhost",
+    "http://localhost:4200",
+]
+
+# Habilitar CORS para los orígenes permitidos
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4200"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],
+    allow_headers=["Authorization", "Content-Type"],
 )
+
+# Definir tus rutas y lógica de la aplicación FastAPI a continuación
+
+# # Configurar CORS
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["http://localhost:4200"],
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
