@@ -21,12 +21,12 @@ export class LoginPageComponent {
                     this.router.navigate(['/home']);
                     console.log('Inicio de sesión exitoso:', result);
                     // Guardar el resultado en localStorage
-                    localStorage.setItem('login success', JSON.stringify(result));
+                    localStorage.setItem('success', JSON.stringify(result));
                 },
                 error: (err) => {
                     console.error('Error al iniciar sesión:', err);
                     // Si se produce un error, también puedes guardar el error en localStorage
-                    localStorage.setItem('login error', JSON.stringify(err));
+                    localStorage.setItem('error', JSON.stringify(err));
                 }
             }
         )

@@ -21,20 +21,23 @@
             <h2 class="text-2xl font-medium text-gray-900">{{ recipeData.title}}</h2>
             <div class="flex items-center border-2 border-amber-500 rounded-lg">
               <!-- Texto "Agregar a favoritos" -->
-              <h2 class="text-gray-900 title-font font-thin text-sm sm:text-2xl px-4">Agregar a favoritos</h2>
+              <h2 class="tracking-widest text-sm title-font font-medium text-gray-400 ml-2">Agregar a favoritos</h2>
               <!-- Botón -->
-              <button class="rounded-full w-10 h-10 bg-white p-0 border-0 inline-flex items-center justify-center text-gray-500">
-                <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+              <button class="rounded-full w-10 h-10 bg-white p-0 border-0 inline-flex items-center justify-center text-gray-500" (click)="saveFavorite()">
+                <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-6 h-6" viewBox="0 0 24 24">
                   <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
                 </svg>
               </button>
             </div>
           </div>
           <!-- Imagen de la receta -->
-          <img alt="imagen de receta" class="w-full h-auto object-cover object-center rounded mb-4" [src]="recipeData.image">
+          <div class="lg:w-full sm:w-1/3 w-full rounded-lg overflow-hidden mt-6 sm:mt-0">
+            <img class="object-cover object-center w-full h-full" [src]="recipeData.image" alt="imagen de receta">
+          </div>
+          <!-- <img alt="imagen de receta" class="w-full h-auto object-cover object-center rounded mb-4" [src]="recipeData.image"> -->
           <!-- Descripción de la receta -->
           <div class="text-gray-700 leading-relaxed">
-            <p class="mb-4" [innerHTML]="getSanitizedSummary()"></p>
+            <p class="mb-4 text-justify text-align-last-justify" [innerHTML]="getSanitizedSummary()"></p>
           </div>
           <!-- Lista de ingredientes -->
           <div class="mb-4">
@@ -50,7 +53,7 @@
             <h3 class="text-lg font-medium text-gray-900">Instructions:</h3>
             <ol class="list-decimal pl-6">
               <ng-container *ngFor="let step of recipeData.analyzedInstructions[0]?.steps">
-                <li>{{ step?.step }}</li>
+                <li class="text-justify text-align-last-justify">{{ step?.step }}</li>
               </ng-container>
             </ol>
           </div>

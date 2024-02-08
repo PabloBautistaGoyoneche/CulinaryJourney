@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SpoonacularService } from '../../services/spoonacular.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Recipe } from '../../interfaces/recipe/recipe.interface';
+import { ApiService } from '../../services/api.service';
 
 @Component({
     selector: 'app-recipe-modal',
@@ -12,15 +13,26 @@ import { Recipe } from '../../interfaces/recipe/recipe.interface';
 export class RecipeModalComponent implements OnInit {
     constructor(
         private spoonacularService: SpoonacularService,
-        private sanitizer: DomSanitizer
+        private sanitizer: DomSanitizer,
+        private apiService: ApiService,
     ) { }
-    @Input() showModal: boolean = false;
-    @Input() idrecipe: any;
+    //@Input() showModal: boolean = false;
+    @Output()
+    public showModalChange = new EventEmitter<boolean>();
+
+    @Input()
+    public idrecipe: number = 0;
 
     public recipeData?: Recipe;
 
-    closeModal() {
-       this.showModal = false;
+    closeModal():void {
+       this.showModalChange.emit();
+    }
+
+    saveFavorite(): void {
+        this.apiService.saveFavoritesByIdUser(1, this.idrecipe).subscribe((data) => {
+            console.log(data);
+        });
     }
 
     ngOnInit() {

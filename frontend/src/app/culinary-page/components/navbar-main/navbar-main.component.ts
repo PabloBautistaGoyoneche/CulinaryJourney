@@ -6,8 +6,16 @@ import { Component } from '@angular/core';
 })
 
 export class NavbarMainComponent {
-showMenu = false;
+  showMenu = false;
   toggleNavbar(){
     this.showMenu = !this.showMenu;
   }
+
+  logout(){
+    localStorage.removeItem('success');
+    localStorage.removeItem('error');
+    //localStorage.removeItem('user');
+    //localStorage.removeItem('id');
+  }
+  
 }
