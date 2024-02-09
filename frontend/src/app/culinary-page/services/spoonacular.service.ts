@@ -23,7 +23,7 @@ export class SpoonacularService {
     //-----------------------------------------------------------------------------------------//
 
     getRecipesByQuery(query: string): Observable<any> {
-        const url = `${this.apiUrl}/recipes/complexSearch?apiKey=${this.apiKey}&query=${query}`;
+        const url = `${this.apiUrl}/recipes/autocomplete?apiKey=${this.apiKey}&query=${query}&number=10`;
         return this.http.get(url);
     };
 
