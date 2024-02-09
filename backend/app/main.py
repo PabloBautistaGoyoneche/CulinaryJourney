@@ -28,17 +28,6 @@ app.add_middleware(
     allow_headers=["Authorization", "Content-Type"],
 )
 
-# Definir tus rutas y lógica de la aplicación FastAPI a continuación
-
-# # Configurar CORS
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=["http://localhost:4200"],
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
-
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 db_connection = get_db()
@@ -92,7 +81,7 @@ async def register_users(user_data: UserCreate, db_connection: MySQLConnection =
 
 # Ruta para agregar recetas a favoritos
 @app.post("/create-favorite-recipes")
-async def create_favorite_recipes(recipe_data: FavoriteRecipeCreate, current_user: User = Depends(get_current_user), db_connection: MySQLConnection = Depends(get_db)):
+async def favorite_recipes(recipe_data: FavoriteRecipeCreate, current_user: User = Depends(get_current_user), db_connection: MySQLConnection = Depends(get_db)):
     # Verificar que el usuario que intenta agregar la receta es el propietario
     if current_user.user_id != recipe_data.user_id:
         raise HTTPException(status_code=403, detail="Permission denied. You can only add recipes to your own favorites.")
