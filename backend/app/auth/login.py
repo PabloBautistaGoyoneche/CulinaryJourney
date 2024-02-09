@@ -38,15 +38,19 @@ def get_current_user(token: str = Depends(oauth2_scheme), db_connection: MySQLCo
         detail="Could not validate credentials",
         headers={"WWW-Authenticate": "Bearer"},
     )
+
     try:
+        # Decodificar el token JWT
         payload = jwt.decode(token, "your-secret-key", algorithms=["HS256"])
-        username: str = payload.get("sub")
+        username: str = payload.get("username")
         if username is None:
             raise credentials_exception
+        email: str = payload.get("email")
+        user = get_user_by_email(db_connection, email)
+        if user is None:
+            raise credentials_exception
+        # Devolver el usuario obtenido
+        return user
     except JWTError:
         raise credentials_exception
-    user = get_user_by_email(db_connection, username)
-    if user is None:
-        raise credentials_exception
-    return user
 
