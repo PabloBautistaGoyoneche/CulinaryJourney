@@ -32,19 +32,6 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 db_connection = get_db()
 
-# Ruta para el login y generación del token
-@app.post("/login", response_model=Token)
-async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db_connection: MySQLConnection = Depends(get_db)):
-    user = get_user(db_connection, email=form_data.username)
-    if not user or not verify_password(form_data.password, user.hashed_password):
-        raise HTTPException(status_code=401, detail="Incorrect email or password")
-
-    # Generar el token de acceso
-    access_token = create_access_token(data={"sub": user.email})
-
-    # Devolver el token en la respuesta
-    return {"access_token": access_token, "token_type": "bearer"}
-
 # Ruta para el registro de usuarios
 @app.post("/register-users", response_model=UserCreateResponse)
 async def register_users(user_data: UserCreate, db_connection: MySQLConnection = Depends(get_db)):
@@ -66,8 +53,12 @@ async def register_users(user_data: UserCreate, db_connection: MySQLConnection =
         confirm_password=user_data.confirm_password
     )
 
+    # Obtener el ID del usuario
+    user_id = new_user_data.user_id
+
     # Generar el token de acceso
-    access_token = create_access_token(data={"sub": new_user_data.email})
+    access_token = create_access_token(user_id)
+    #access_token = create_access_token(data={"sub": new_user_data.email})
 
     # Devolver el nuevo usuario y el token en la respuesta
     return {
@@ -78,6 +69,24 @@ async def register_users(user_data: UserCreate, db_connection: MySQLConnection =
         "access_token": access_token,
         "token_type": "bearer",
     }
+
+
+# Ruta para el login y generación del token
+@app.post("/login", response_model=Token)
+async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db_connection: MySQLConnection = Depends(get_db)):
+    user = get_user(db_connection, email=form_data.username)
+    if not user or not verify_password(form_data.password, user.hashed_password):
+        raise HTTPException(status_code=401, detail="Incorrect email or password")
+
+    # Obtener el ID del usuario
+    user_id = user.user_id
+
+    # Generar el token de acceso
+    access_token = create_access_token(user_id)
+
+    # Devolver el token en la respuesta
+    return {"access_token": access_token, "token_type": "bearer"}
+
 
 # Ruta para agregar recetas a favoritos
 @app.post("/create-favorite-recipes")
@@ -93,7 +102,7 @@ async def favorite_recipes(recipe_data: FavoriteRecipeCreate, current_user: User
 
 # Ruta para ver recetas favoritas
 @app.get("/see-favorite-recipes", response_model=list[FavoriteRecipe])
-async def see_favorite_recipes(current_user: User = Depends(get_current_user), db_connection: MySQLConnection = Depends(get_db)):
+async def show_favorite_recipes(current_user: User = Depends(get_current_user), db_connection: MySQLConnection = Depends(get_db)):
     # Obtener las recetas favoritas del usuario actual
     favorite_recipes = see_favorite_recipes(db_connection, user_id=current_user.user_id)
 
