@@ -100,11 +100,17 @@ async def favorite_recipes(recipe_data: FavoriteRecipeCreate, current_user: User
 
     return {"message": "Recipe added to favorites successfully", "favorite_recipe": favorite_recipe}
 
-# Ruta para ver recetas favoritas
+from fastapi import HTTPException
+
+# Ruta para ver recetas favoritas filtradas por el id del usuario
 @app.get("/see-favorite-recipes", response_model=list[FavoriteRecipe])
-async def show_favorite_recipes(current_user: User = Depends(get_current_user), db_connection: MySQLConnection = Depends(get_db)):
-    # Obtener las recetas favoritas del usuario actual
-    favorite_recipes = see_favorite_recipes(db_connection, user_id=current_user.user_id)
+async def show_favorite_recipes(user_id: int, requesting_user: User = Depends(get_current_user), db_connection: MySQLConnection = Depends(get_db)):
+    # Verificar que el usuario que realiza la solicitud sea el mismo que se está filtrando
+    if requesting_user.user_id != user_id:
+        raise HTTPException(status_code=403, detail="Permission denied. You can only see your own favorite recipes.")
+
+    # Obtener las recetas favoritas del usuario especificado
+    favorite_recipes = see_favorite_recipes(db_connection, user_id=user_id)
 
     return favorite_recipes
 

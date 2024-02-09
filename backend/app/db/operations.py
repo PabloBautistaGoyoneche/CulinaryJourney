@@ -44,16 +44,22 @@ def create_favorite_recipes(db_connection: MySQLConnection, user_id: int, recipe
     cursor.close()
     return FavoriteRecipeCreate(favorite_id=favorite_id, user_id=user_id, recipe_id=recipe_id)
 
-def see_favorite_recipes(db_connection: MySQLConnection, user_id: int) -> List[FavoriteRecipe]:
-    cursor = db_connection.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM favorite_recipes WHERE user_id = %s", (user_id,))
-    favorite_recipes = cursor.fetchall()
-    cursor.close()
-    return [FavoriteRecipe(**recipe) for recipe in favorite_recipes]
-
 def get_user_by_email(db_connection: MySQLConnection, email: str) -> UserDB:
     cursor = db_connection.cursor(dictionary=True)
     cursor.execute("SELECT * FROM users WHERE email = %s", (email,))
     user = cursor.fetchone()
     cursor.close()
     return User(**user) if user else None
+
+def see_favorite_recipes(db_connection: MySQLConnection, user_id: int) -> List[FavoriteRecipe]:
+    cursor = db_connection.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM favorite_recipes WHERE user_id = %s", (user_id,))
+    favorite_recipes_data = cursor.fetchall()
+    cursor.close()
+
+    favorite_recipes = []
+    for recipe_data in favorite_recipes_data:
+        favorite_recipe = FavoriteRecipe(**recipe_data)
+        favorite_recipes.append(favorite_recipe)
+
+    return favorite_recipes
