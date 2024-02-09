@@ -18,9 +18,13 @@ def get_user(db_connection: MySQLConnection, email: str):
 
 
 # Esta función crea un token JWT con el ID del usuario
-def create_access_token(user_id: int):
+def create_access_token(user_id: int, username: str, email: str):
     # Definir la información que se incluirá en el token (payload)
-    payload = {"user_id": user_id}
+    payload = {
+        "user_id": user_id,
+        "username": username,
+        "email": email
+    }
 
     # Generar el token con el payload y una clave secreta
     token = jwt.encode(payload, "your-secret-key", algorithm="HS256")

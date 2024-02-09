@@ -57,7 +57,7 @@ async def register_users(user_data: UserCreate, db_connection: MySQLConnection =
     user_id = new_user_data.user_id
 
     # Generar el token de acceso
-    access_token = create_access_token(user_id)
+    access_token = create_access_token(user_id=user_id, username=new_user_data.username, email=new_user_data.email)
     #access_token = create_access_token(data={"sub": new_user_data.email})
 
     # Devolver el nuevo usuario y el token en la respuesta
@@ -78,11 +78,8 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
     if not user or not verify_password(form_data.password, user.hashed_password):
         raise HTTPException(status_code=401, detail="Incorrect email or password")
 
-    # Obtener el ID del usuario
-    user_id = user.user_id
-
     # Generar el token de acceso
-    access_token = create_access_token(user_id)
+    access_token = create_access_token(user_id=user.user_id, username=user.username, email=user.email)
 
     # Devolver el token en la respuesta
     return {"access_token": access_token, "token_type": "bearer"}
@@ -103,7 +100,7 @@ async def favorite_recipes(recipe_data: FavoriteRecipeCreate, current_user: User
 from fastapi import HTTPException
 
 # Ruta para ver recetas favoritas filtradas por el id del usuario
-@app.get("/see-favorite-recipes", response_model=list[FavoriteRecipe])
+@app.post("/see-favorite-recipes", response_model=list[FavoriteRecipe])
 async def show_favorite_recipes(user_id: int, requesting_user: User = Depends(get_current_user), db_connection: MySQLConnection = Depends(get_db)):
     # Verificar que el usuario que realiza la solicitud sea el mismo que se está filtrando
     if requesting_user.user_id != user_id:
