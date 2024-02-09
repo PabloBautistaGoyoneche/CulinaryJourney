@@ -16,8 +16,17 @@ def verify_password(plain_password, hashed_password):
 def get_user(db_connection: MySQLConnection, email: str):
     return get_user_by_email(db_connection, email)
 
-def create_access_token(data: dict):
-    return jwt.encode(data, "your-secret-key", algorithm="HS256")
+
+# Esta función crea un token JWT con el ID del usuario
+def create_access_token(user_id: int):
+    # Definir la información que se incluirá en el token (payload)
+    payload = {"user_id": user_id}
+
+    # Generar el token con el payload y una clave secreta
+    token = jwt.encode(payload, "your-secret-key", algorithm="HS256")
+
+    return token
+
 
 def get_current_user(token: str = Depends(oauth2_scheme), db_connection: MySQLConnection = Depends(get_db)):
     credentials_exception = HTTPException(
