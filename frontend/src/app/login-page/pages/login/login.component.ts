@@ -18,7 +18,7 @@ export class LoginPageComponent {
         this.loginService.login(username, password).subscribe(
             {
                 next: (result) => {
-                    this.router.navigate(['/home']);
+                    this.router.navigate(['/culinary/home']);
                     console.log('Inicio de sesión exitoso:', result);
                     // Guardar el resultado en localStorage
                     localStorage.setItem('success', JSON.stringify(result));

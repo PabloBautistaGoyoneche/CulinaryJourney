@@ -34,7 +34,6 @@
           <div class="lg:w-full sm:w-1/3 w-full rounded-lg overflow-hidden mt-6 sm:mt-0">
             <img class="object-cover object-center w-full h-full" [src]="recipeData.image" alt="imagen de receta">
           </div>
-          <!-- <img alt="imagen de receta" class="w-full h-auto object-cover object-center rounded mb-4" [src]="recipeData.image"> -->
           <!-- Descripción de la receta -->
           <div class="text-gray-700 leading-relaxed">
             <p class="mb-4 text-justify text-align-last-justify" [innerHTML]="getSanitizedSummary()"></p>
@@ -52,9 +51,19 @@
           <div>
             <h3 class="text-lg font-medium text-gray-900">Instructions:</h3>
             <ol class="list-decimal pl-6">
-              <ng-container *ngFor="let step of recipeData.analyzedInstructions[0]?.steps">
-                <li class="text-justify text-align-last-justify">{{ step?.step }}</li>
-              </ng-container>
+                <ng-container *ngIf="recipeData.analyzedInstructions && recipeData.analyzedInstructions.length > 0">
+                    <ng-container *ngIf="recipeData.analyzedInstructions[0]?.steps && recipeData.analyzedInstructions[0].steps.length > 0; else noInstructions">
+                        <li *ngFor="let step of recipeData.analyzedInstructions[0]?.steps" class="text-justify text-align-last-justify">
+                            {{ step?.step }}
+                        </li>
+                    </ng-container>
+                    <ng-template #noInstructions>
+                        <li class="text-justify text-align-last-justify">No instructions available</li>
+                    </ng-template>
+                </ng-container>
+                <ng-container *ngIf="!recipeData.analyzedInstructions || recipeData.analyzedInstructions.length === 0">
+                    <li class="text-justify text-align-last-justify">No instructions available</li>
+                </ng-container>
             </ol>
           </div>
         </div>

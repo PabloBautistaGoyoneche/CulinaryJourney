@@ -40,9 +40,10 @@
                 <div class="flex w-full md:justify-center justify-center items-end">
                     <div class="relative mr-4 lg:w-full xl:w-1/2 w-2/4">
                         <!-- <label for="hero-field" class="leading-7 text-sm text-gray-600">Placeholder</label> -->
-                        <input type="text" id="hero-field" name="hero-field" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:ring-amber-200 focus:bg-transparent focus:border-amber-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        <input type="text" id="search-field" name="search-field" [(ngModel)]="searchText" (keyup.enter)="searchRecipes()" placeholder="Buscar recetas"
+                          class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:ring-2 focus:ring-amber-200 focus:bg-transparent focus:border-amber-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
                     </div>
-                    <button class="inline-flex text-white bg-amber-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-800 rounded text-lg">Buscar</button>
+                    <button (click)="searchRecipes()" class="inline-flex text-white bg-amber-500 border-0 py-2 px-6 focus:outline-none hover:bg-yellow-800 rounded text-lg">Buscar</button>
                 </div>
               <!-- <h3
                 class="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2"
@@ -74,7 +75,7 @@
     <section class="text-gray-600 body-font">
         <div class="container px-5 mx-auto">
           <div class="flex flex-col text-center w-full mb-10">
-            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Recetas</h1>
+            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Recipes</h1>
             <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them.</p>
           </div>   
         </div>

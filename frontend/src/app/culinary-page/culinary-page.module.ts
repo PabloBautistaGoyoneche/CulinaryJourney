@@ -7,6 +7,7 @@ import { NavbarMainComponent } from './components/navbar-main/navbar-main.compon
 import { RecipeModalComponent } from './components/recipe-modal/recipe-modal.component';
 import { RecipeViewComponent } from './components/recipe-view/recipe-view.component';
 import { CulinaryPageRoutingModule } from './culinary-page-routing.module';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -31,7 +32,8 @@ import { CulinaryPageRoutingModule } from './culinary-page-routing.module';
   ],
   imports: [
     CommonModule,
-    CulinaryPageRoutingModule
+    CulinaryPageRoutingModule,
+    FormsModule,
   ]
 })
 export class CulinaryPageModule { }

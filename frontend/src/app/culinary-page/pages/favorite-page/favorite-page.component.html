@@ -1,0 +1,47 @@
+<app-main-navbar></app-main-navbar>
+<main class="profile-page">
+    <section class="relative block" style="height: 500px;">
+      <div
+        class="absolute top-0 w-full h-full bg-center bg-cover"
+        style='background-image: url(./assets/img/ingredients_bg_2.png);'
+      >
+        <span
+          id="blackOverlay"
+          class="w-full h-full absolute opacity-50 bg-black"
+        ></span>
+      </div>
+      <div
+        class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
+        style="height: 70px;"
+      >
+        <!-- <svg
+          class="absolute bottom-0 overflow-hidden"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          version="1.1"
+          viewBox="0 0 2560 100"
+          x="0"
+          y="0"
+        >
+          <polygon
+            class="text-gray-300 fill-current"
+            points="2560 0 2560 100 0 100"
+          ></polygon>
+        </svg> -->
+      </div>
+    </section>
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 mx-auto">
+          <div class="flex flex-col text-center w-full mb-10">
+            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Favorite recipes</h1>
+            <p class="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them.</p>
+          </div>   
+        </div>
+    </section>
+    <div class="justify-center items-center flex flex-row">
+        <span *ngIf="recipes.length === 0" class="text-center text-2xl font-medium text-gray-900">No recipes found</span>
+    </div>
+    <app-recipe-view *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe-view>
+
+  </main>
+<app-main-footer></app-main-footer>

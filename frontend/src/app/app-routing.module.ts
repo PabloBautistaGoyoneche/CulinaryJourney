@@ -14,9 +14,13 @@ const routes: Routes = [
     component: RegisterPageComponent 
   },
   {
-    path: 'home',
+    path: 'culinary',
     loadChildren: () => import('./culinary-page/culinary-page.module').then(m => m.CulinaryPageModule)
   },
+  // {
+  //   path: 'favorite',
+  //   loadChildren: () => import('./culinary-page/culinary-page.module').then(m => m.CulinaryPageModule)
+  // },
   { 
     path: '**',
     redirectTo: 'login' 

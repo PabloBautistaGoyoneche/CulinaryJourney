@@ -30,7 +30,7 @@ export class RecipeModalComponent implements OnInit {
     }
 
     saveFavorite(): void {
-        this.apiService.saveFavoritesByIdUser(1, this.idrecipe).subscribe((data) => {
+        this.apiService.saveFavoritesByIdUser(this.idrecipe).subscribe((data) => {
             console.log(data);
         });
     }
