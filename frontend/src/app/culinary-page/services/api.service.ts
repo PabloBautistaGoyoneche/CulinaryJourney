@@ -14,35 +14,41 @@ export class ApiService {
 
         console.log('localStorage', localStorage.getItem('success'));
 
-        // Obtener el token de localStorage
-        // const success = JSON.parse(localStorage.getItem('success')??'');
-        // const token = success?.access_token; // Acceder al token dentro de success
         const token = this.getToken();
         console.log('token', token);
         
-        // Verificar si el token está disponible
         if (!token) {
             throw new Error('No hay token de autenticación disponible');
         }
-
-        // Obtener el ID de usuario desde el token
         const userId = this.getUserIdFromToken();
         console.log('UserId', userId);
-        if (userId) {
-            // Usar el ID de usuario en tu solicitud POST
-            // this.tuServicio.postSolicitud(userId, otrosDatos).subscribe((response) => {
-            //     // Manejar la respuesta
-            // });
+
+        if (userId == null) {
+            throw new Error('No se pudo obtener el ID de usuario desde el token');
         }
         
-        // Configurar el encabezado de autorización con el token
         const headers = new HttpHeaders({
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
         });
-
-        return this.http.post(`${this.apiUrl}/create-favorite-recipes`, { "user_id": 1, "recipe_id": recipeId}, { headers });
+        return this.http.post(`${this.apiUrl}/create-favorite-recipes`, { "user_id": userId, "recipe_id": recipeId}, { headers });
     };
+
+    showFavoritesByIdUser(): Observable<any> {
+        const token = this.getToken();
+        if (!token) {
+            throw new Error('No hay token de autenticación disponible');
+        }
+        const userId = this.getUserIdFromToken();
+        if (userId == null) {
+            throw new Error('No se pudo obtener el ID de usuario desde el token');
+        }
+        const headers = new HttpHeaders({
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+        });
+        return this.http.post(`${this.apiUrl}/see-favorite-recipes?user_id=${userId}`, { headers });
+    }
 
     getToken: () => string = () => {
         const success = JSON.parse(localStorage.getItem('success')??'');
