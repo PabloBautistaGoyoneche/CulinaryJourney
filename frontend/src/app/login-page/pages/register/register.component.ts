@@ -21,12 +21,12 @@ export class RegisterPageComponent {
                     this.router.navigate(['/login']);
                     console.log('Registro exitoso:', result);
                     // Guardar el resultado en localStorage
-                    localStorage.setItem('successful registration', JSON.stringify(result));
+                    //localStorage.setItem('successful registration', JSON.stringify(result));
                 },
                 error: (err) => {
                     console.error('Error al registrarse:', err);
                     // Si se produce un error, también puedes guardar el error en localStorage
-                    localStorage.setItem('Registration error', JSON.stringify(err));
+                    //localStorage.setItem('Registration error', JSON.stringify(err));
                 }
             }
         )

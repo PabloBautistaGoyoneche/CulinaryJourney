@@ -22,7 +22,7 @@ export class FavoritePageComponent implements OnInit {
         this.apiService.showFavoritesByIdUser().subscribe((data) => {
             dataList = data;
             
-            console.log(data);
+            console.log('showFavoritesByIdUser', data);
 
             dataList.forEach((result) => {
                 this.spoonacularService.getRecipesById(result.recipe_id).subscribe((data) => {
