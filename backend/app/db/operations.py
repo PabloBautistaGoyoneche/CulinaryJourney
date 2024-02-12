@@ -3,7 +3,7 @@ from passlib.hash import bcrypt
 from models.user import UserDB, User
 from db.connection import get_db
 from models.favorite_recipe import FavoriteRecipe, FavoriteRecipeCreate
-from typing import List
+from typing import List, Optional
 
 db_connection = get_db()
 
@@ -63,6 +63,18 @@ def see_favorite_recipes(db_connection: MySQLConnection, user_id: int) -> List[F
         favorite_recipes.append(favorite_recipe)
 
     return favorite_recipes
+
+
+def get_favorite_recipe(db_connection: MySQLConnection, favorite_recipe_id: int) -> Optional[FavoriteRecipe]:
+    cursor = db_connection.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM favorite_recipes WHERE favorite_recipe_id = %s", (favorite_recipe_id,))
+    favorite_recipe_data = cursor.fetchone()
+    cursor.close()
+
+    if favorite_recipe_data:
+        return FavoriteRecipe(**favorite_recipe_data)
+    else:
+        return None
 
 def delete_favorite_recipe(db_connection: MySQLConnection, favorite_recipe_id: int):
     cursor = db_connection.cursor()
