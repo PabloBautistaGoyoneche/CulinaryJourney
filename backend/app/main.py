@@ -10,6 +10,7 @@ from models.token import Token
 from models.user import User, UserCreate, UserCreateResponse
 from db.operations import create_favorite_recipes
 from models.favorite_recipe import FavoriteRecipeCreate, FavoriteRecipe
+from db.operations import delete_favorite_recipe
 
 app = FastAPI()
 
@@ -110,6 +111,22 @@ async def show_favorite_recipes(user_id: int, requesting_user: User = Depends(ge
     favorite_recipes = see_favorite_recipes(db_connection, user_id=user_id)
 
     return favorite_recipes
+
+# Ruta para eliminar recetas favoritas
+@app.delete("/delete-favorite-recipe/{favorite_recipe_id}")
+async def delete_favorite_recipe(favorite_recipe_id: int, current_user: User = Depends(get_current_user), db_connection: MySQLConnection = Depends(get_db)):
+    # Verificar si la receta favorita pertenece al usuario autenticado
+    favorite_recipe = get_favorite_recipe(db_connection, favorite_recipe_id)
+    if not favorite_recipe:
+        raise HTTPException(status_code=404, detail="Favorite recipe not found")
+    if favorite_recipe.user_id != current_user.user_id:
+        raise HTTPException(status_code=403, detail="Permission denied. You can only delete your own favorite recipes.")
+
+    # Eliminar la receta favorita de la base de datos
+    delete_favorite_recipe(db_connection, favorite_recipe_id)
+
+    return {"message": "Favorite recipe deleted successfully"}
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="127.0.0.1", port=8000, reload=True)

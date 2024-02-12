@@ -63,3 +63,9 @@ def see_favorite_recipes(db_connection: MySQLConnection, user_id: int) -> List[F
         favorite_recipes.append(favorite_recipe)
 
     return favorite_recipes
+
+def delete_favorite_recipe(db_connection: MySQLConnection, favorite_recipe_id: int):
+    cursor = db_connection.cursor()
+    cursor.execute("DELETE FROM favorite_recipes WHERE favorite_id = %s", (favorite_recipe_id,))
+    db_connection.commit()
+    cursor.close()
