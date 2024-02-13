@@ -41,5 +41,6 @@ export interface Recipe {
     originalId: number | null;
     spoonacularScore: number;
     spoonacularSourceUrl: string;
+    favorite_id: number;
   }
   
