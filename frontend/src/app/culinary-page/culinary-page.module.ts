@@ -28,7 +28,7 @@ import { FormsModule } from '@angular/forms';
     FooterMainComponent,
     NavbarMainComponent,
     RecipeModalComponent,
-    RecipeViewComponent
+    RecipeViewComponent,
   ],
   imports: [
     CommonModule,

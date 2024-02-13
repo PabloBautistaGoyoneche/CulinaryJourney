@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Recipe } from '../../interfaces/recipe/recipe.interface';
 
 @Component({
     selector: 'app-recipe-view',
@@ -9,14 +10,20 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class RecipeViewComponent {
     constructor(private sanitizer: DomSanitizer) {}
     showModal: boolean = false;
-    @Input() recipe: any;
+    @Input() 
+    recipe?: Recipe;
+
+    @Input()
+    public showAddButtonCV: boolean = true;
+
+    @Input()
+    public showDeleteButtonCV: boolean = true;
 
     toggleModal() {
-        console.log('id receta', this.recipe.id);
         this.showModal = !this.showModal;
     }
 
     getSanitizedSummary(): any {
-        return this.sanitizer.bypassSecurityTrustHtml(this.recipe.summary);
+        return this.sanitizer.bypassSecurityTrustHtml(this.recipe?.summary??'');
     }
 }

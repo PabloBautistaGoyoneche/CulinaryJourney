@@ -4,7 +4,6 @@ import { BrowserModule, provideClientHydration } from '@angular/platform-browser
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-// import { CulinaryModule } from './culinary/culinary.module';
 import { LoginPageModule } from './login-page/login-page.module';
 
 @NgModule({
@@ -15,12 +14,13 @@ import { LoginPageModule } from './login-page/login-page.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    // CulinaryModule,
     LoginPageModule,
   ],
   providers: [
     provideClientHydration()
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent,
+  ]
 })
 export class AppModule { }

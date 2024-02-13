@@ -10,6 +10,9 @@ import { ApiService } from '../../services/api.service';
 export class FavoritePageComponent implements OnInit {
     recipes: any[] = [];
 
+    showAddFavoriteButton: boolean = false;
+    showDeleteFavoriteButton: boolean = true;
+
     constructor(
         private spoonacularService: SpoonacularService,
         private apiService: ApiService,
@@ -22,13 +25,22 @@ export class FavoritePageComponent implements OnInit {
         this.apiService.showFavoritesByIdUser().subscribe((data) => {
             dataList = data;
             
-            console.log('showFavoritesByIdUser', data);
+            console.log('showFavoritesByIdUser', dataList);
 
-            dataList.forEach((result) => {
-                this.spoonacularService.getRecipesById(result.recipe_id).subscribe((data) => {
+            // dataList.forEach((result) => {
+            //     this.spoonacularService.getRecipesById(result.recipe_id).subscribe((data) => {
+            //         data.favorite_id = dataList.favorite_id;
+            //         this.recipes.push(data);
+            //     });
+            // });
+
+            for (let i = 0; i < dataList.length; i++) {
+                this.spoonacularService.getRecipesById(dataList[i].recipe_id).subscribe((data) => {
+                    data.favorite_id = dataList[i].favorite_id;
                     this.recipes.push(data);
+                    console.log('data ---> favorite',data);
                 });
-            });
+            }
         });
     }
 

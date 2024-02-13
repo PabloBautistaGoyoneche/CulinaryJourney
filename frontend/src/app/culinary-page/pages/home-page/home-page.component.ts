@@ -10,6 +10,10 @@ import { Recipe } from '../../interfaces/recipe/recipe.interface';
 export class HomePageComponent implements OnInit {
     recipes: any[] = [];
     searchText: string = "";
+
+    showAddFavoriteButton: boolean = true;
+    showDeleteFavoriteButton: boolean = false;
+    
     constructor(
         private spoonacularService: SpoonacularService
     ) { }
@@ -34,14 +38,10 @@ export class HomePageComponent implements OnInit {
                 });
 
             });
-
-            console.log('----- recipes -----', this.recipes, '----- fin recipes -----');
-            
         } else {
             this.spoonacularService.getRandomRecipes().subscribe((data) => {
                 this.recipes = data.recipes;
             });
-            
         }
     }
 }

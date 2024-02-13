@@ -16,13 +16,16 @@ export class RecipeModalComponent implements OnInit {
         private sanitizer: DomSanitizer,
         private apiService: ApiService,
     ) { }
-    //@Input() showModal: boolean = false;
     @Output()
     public showModalChange = new EventEmitter<boolean>();
 
     @Input()
-    public idrecipe: number = 0;
+    public showAddButtonCM: boolean = true;
 
+    @Input()
+    public showDeleteButtonCM: boolean = true;
+    
+    @Input()
     public recipeData?: Recipe;
 
     closeModal():void {
@@ -30,17 +33,22 @@ export class RecipeModalComponent implements OnInit {
     }
 
     saveFavorite(): void {
-        this.apiService.saveFavoritesByIdUser(this.idrecipe).subscribe((data) => {
+        this.apiService.saveFavoritesByIdUser(this.recipeData!.id).subscribe((data) => {
             console.log(data);
         });
+        this.closeModal();
     }
 
-    ngOnInit() {
-        this.spoonacularService.getRecipesById(this.idrecipe).subscribe((data: Recipe) => {
+    deleteFavorite(): void {
+        console.log('---Delete---recipeData',this.recipeData!);
+        this.apiService.deleteFavoritesByIdUser(this.recipeData!.favorite_id).subscribe((data) => {
             console.log(data);
-            this.recipeData = data;
         });
+        this.closeModal();
+        window.location.reload();
     }
+
+    ngOnInit() {}
 
     getSanitizedSummary(): any {
         return this.sanitizer.bypassSecurityTrustHtml(this.recipeData!.summary??this.sanitizer.bypassSecurityTrustHtml(''));
