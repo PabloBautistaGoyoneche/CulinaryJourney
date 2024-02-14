@@ -105,23 +105,23 @@ ____________________________
 |__________________________|
 ```
 
-### 3. Navegar al directorio
+### 3. Navigate to directory
 
 ```bash
     CulinaryJourney/backend
 ```
 
-### 4. Instalar dependencias
+### 4. Install dependencies
 ```bash
     pip install -r requirements.txt
 ```
 
-### 5. Navegar al directorio
+### 5. Navigate to directory
 ```bash
     CulinaryJourney/backend/app
 ```
 
-### 6. Ejecutar el comando
+### 6. Run the command
 ```bash
     uvicorn main:app --reload
 ```
