@@ -112,7 +112,7 @@ async def show_favorite_recipes(user_id: int, requesting_user: User = Depends(ge
     return favorite_recipes
 
 # Ruta para eliminar recetas favoritas
-@app.delete("/delete-favorite-recipe/{favorite_recipe_id}")
+@app.delete("/delete-favorite-recipe")
 async def delete_the_favorite_recipe(favorite_recipe_id: int, current_user: User = Depends(get_current_user), db_connection: MySQLConnection = Depends(get_db)):
     # Verificar si la receta favorita pertenece al usuario autenticado
     favorite_recipe = get_favorite_recipe(db_connection, favorite_recipe_id)
