@@ -98,7 +98,6 @@ async def favorite_recipes(recipe_data: FavoriteRecipeCreate, current_user: User
 
     return {"message": "Recipe added to favorites successfully", "favorite_recipe": favorite_recipe}
 
-from fastapi import HTTPException
 
 # Ruta para ver recetas favoritas filtradas por el id del usuario
 @app.post("/see-favorite-recipes", response_model=list[FavoriteRecipe])
