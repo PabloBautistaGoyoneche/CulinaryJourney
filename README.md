@@ -1,3 +1,24 @@
+# Recipe Finder - Project
+
+
+
+
+![Logo](https://github.com/PabloBautistaGoyoneche/CulinaryJourney/blob/main/img/logo1.png?raw=true)
+
+
+## Introduction
+
+The "Recipe Finder" project aims to provide users with a platform that allows them to authenticate themselves, search for recipes according to specific ingredients and display the results in a clear and accessible way. User authentication will be essential to ensure security and personalization of the user experience.
+
+
+## Tech Stack
+
+**Client:** Angular 17.1, TailwindCSS
+
+**Server:** Python, FastApi
+
+**DataBase:** MySql
+
 # Favorite Recipe Manager
 
 This project consists of an API built with FastAPI that allows users to manage their favorite recipes. Users can register, log in, add recipes to their favorites, view their favorite recipes, and remove recipes from their favorites. The API uses JWT token-based authentication to secure routes that require authentication. User information and favorite recipes are stored in a MySQL database.
@@ -7,7 +28,7 @@ This project consists of an API built with FastAPI that allows users to manage t
 git clone https://github.com/PabloBautistaGoyoneche/CulinaryJourney
 ```
 
-# 2. MySQL database:
+** 2. MySQL database:
 
 **2.1 Installing MySQL on Windows:**
 - Download the MySQL MSI installer from the official site: MySQL Community Downloads.
