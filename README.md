@@ -141,11 +141,6 @@ Steps to execute:
 
 ## 2. Performance
 
-
-
-    
-## FAQ
-
 #### 2.1 Login
 
 ![Login](https://github.com/PabloBautistaGoyoneche/CulinaryJourney/blob/main/img/View1.png?raw=true)
