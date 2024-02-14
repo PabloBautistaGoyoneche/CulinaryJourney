@@ -1,3 +1,4 @@
+
 # Recipe Finder - Project
 
 
@@ -19,16 +20,19 @@ The "Recipe Finder" project aims to provide users with a platform that allows th
 
 **DataBase:** MySql
 
-# Favorite Recipe Manager
+**Integrate Api :** https://spoonacular.com/
+
+
+## Favorite Recipe Manager <backend>
 
 This project consists of an API built with FastAPI that allows users to manage their favorite recipes. Users can register, log in, add recipes to their favorites, view their favorite recipes, and remove recipes from their favorites. The API uses JWT token-based authentication to secure routes that require authentication. User information and favorite recipes are stored in a MySQL database.
 
-## 1. Clone the project
+### 1. Clone the project
 ```bash
 git clone https://github.com/PabloBautistaGoyoneche/CulinaryJourney
 ```
 
-** 2. MySQL database:
+### 2. MySQL database:
 
 **2.1 Installing MySQL on Windows:**
 - Download the MySQL MSI installer from the official site: MySQL Community Downloads.
@@ -101,26 +105,82 @@ ____________________________
 |__________________________|
 ```
 
-## 3. Navegar al directorio
+### 3. Navegar al directorio
 
 ```bash
     CulinaryJourney/backend
 ```
 
-## 4. Instalar dependencias
+### 4. Instalar dependencias
 ```bash
     pip install -r requirements.txt
 ```
 
-## 5. Navegar al directorio
+### 5. Navegar al directorio
 ```bash
     CulinaryJourney/backend/app
 ```
 
-## 6. Ejecutar el comando
+### 6. Ejecutar el comando
 ```bash
     uvicorn main:app --reload
 ```
+
+## Web application <frontend>
+## 1. Angular Installation
+
+Steps to execute:
+
+```bash
+  npm install -g @angular/cli
+  git clone https://github.com/PabloBautistaGoyoneche/CulinaryJourney.git
+  cd frontend
+  npm install
+  ng serve -o
+```
+
+## 2. Performance
+
+
+
+    
+## FAQ
+
+#### 2.1 Login
+
+![Login](https://github.com/PabloBautistaGoyoneche/CulinaryJourney/blob/main/img/View1.png?raw=true)
+
+#### 2.2 Register user
+
+![Register_user](https://github.com/PabloBautistaGoyoneche/CulinaryJourney/blob/main/img/View2.png?raw=true)
+
+#### 2.3 Home Page
+
+![Home_Page](https://github.com/PabloBautistaGoyoneche/CulinaryJourney/blob/main/img/View3.png?raw=true)
+
+#### 2.4 Search for dishes
+
+![Search](https://github.com/PabloBautistaGoyoneche/CulinaryJourney/blob/main/img/View4.png?raw=true)
+
+#### 2.5 Save Favorite Dish
+
+![Save](https://github.com/PabloBautistaGoyoneche/CulinaryJourney/blob/main/img/View5.png?raw=true)
+
+#### 2.6 Favorite Page
+
+![Favorite](https://github.com/PabloBautistaGoyoneche/CulinaryJourney/blob/main/img/View6.png?raw=true)
+
+#### 2.7 Delete favorite dish
+
+![Delete](https://github.com/PabloBautistaGoyoneche/CulinaryJourney/blob/main/img/View7.png?raw=true)
+
+
+## Authors
+
+- [Pablo Bautista Goyoneche](https://github.com/PabloBautistaGoyoneche)
+- [Daisy Chipana Lapa](https://github.com/DaisyGeraldine)
+
+
 
 
 
