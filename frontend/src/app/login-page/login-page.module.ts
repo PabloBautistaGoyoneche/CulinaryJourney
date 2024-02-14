@@ -5,6 +5,7 @@ import { NavbarLoginComponent } from './components/navbar/navbar.component';
 import { FooterLoginComponent } from './components/footer/footer.component';
 import { RegisterPageComponent } from './pages/register/register.component';
 import { RouterModule } from '@angular/router';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { RouterModule } from '@angular/router';
     RegisterPageComponent,
     NavbarLoginComponent,
     FooterLoginComponent,
+    NotificationComponent,
     
   ],
   exports: [
@@ -19,6 +21,7 @@ import { RouterModule } from '@angular/router';
     RegisterPageComponent,
     NavbarLoginComponent,
     FooterLoginComponent,
+    NotificationComponent,
   ],
   imports: [
     CommonModule,

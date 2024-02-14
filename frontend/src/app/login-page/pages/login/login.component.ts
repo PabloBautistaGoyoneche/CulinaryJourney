@@ -14,10 +14,14 @@ export class LoginPageComponent {
         private router: Router,
     ) {}
 
+    successMessage: string = '¡Successful login!!';
+    showNotification: boolean = false;
+
     login(username: string, password: string) {
         this.loginService.login(username, password).subscribe(
             {
                 next: (result) => {
+                    this.showNotification = true;
                     this.router.navigate(['/culinary/home']);
                     console.log('Inicio de sesión exitoso:', result);
                     // Guardar el resultado en localStorage

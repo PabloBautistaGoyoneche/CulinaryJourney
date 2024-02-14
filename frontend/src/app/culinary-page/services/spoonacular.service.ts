@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/internal/Observable';
 @Injectable({providedIn: 'root'})
 export class SpoonacularService {
 
-    private apiKey = '193651dee43342569d665815b3ab4664';
+    private apiKey = '12788b283a384c70bcd8f70407e8b1a6'; //'193651dee43342569d665815b3ab4664';
     private apiUrl = 'https://api.spoonacular.com'; 
 
     constructor(private http: HttpClient) {}
